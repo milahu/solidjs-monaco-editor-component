@@ -312,8 +312,11 @@ export default function MonacoEditor(props) {
       onUpdateTree: newTree => {
         //console.log('onUpdateTree: newTree', newTree)
         //console.log('onUpdateTree: newTree.rootNode', newTree.rootNode) // tree-sitter
-        console.log('MonacoEditor: onUpdateTree: newTree.topNode', newTree.topNode) // lezer-parser
+        //console.log('MonacoEditor: onUpdateTree: newTree', newTree)
+        //console.log('MonacoEditor: onUpdateTree: newSource', editor.getValue());
         setState('tree', newTree);
+        // note: first set source, then set tree. App.jsx reacts to new tree, but also needs new source
+        if (props.setSource) props.setSource(editor.getValue()); // TODO incremental sync
         if (props.setTree) props.setTree(newTree); // callback to parent components
       },
     });
