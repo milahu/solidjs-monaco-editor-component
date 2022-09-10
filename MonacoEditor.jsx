@@ -46,21 +46,24 @@ import * as Monaco from 'monaco-editor';
 /*
 this is working
 //import * as MonacoTreeSitter from "monaco-tree-sitter";
-import * as MonacoTreeSitter from "../monaco-tree-sitter";
-import MonacoTreeSitterGrammarNix from "../monaco-tree-sitter/grammars/nix.json";
-import MonacoThemeTomorrow from "../monaco-tree-sitter/themes/tomorrow";
+import * as MonacoTreeSitter from "./monaco-tree-sitter";
+import MonacoTreeSitterGrammarNix from "./monaco-tree-sitter/grammars/nix.json";
+import MonacoThemeTomorrow from "./monaco-tree-sitter/themes/tomorrow";
 MonacoTreeSitter.Theme.load(MonacoThemeTomorrow);
 */
 
 
-import * as MonacoLezerParser from "../monaco-lezer-parser";
-import MonacoLezerParserGrammarNix from "../monaco-lezer-parser/grammars/nix.json";
+// TODO factor out to props.parser?
+import * as MonacoLezerParser from "./monaco-lezer-parser";
+import MonacoLezerParserGrammarNix from "./monaco-lezer-parser/grammars/nix.json";
 //import { parser as LezerParserNix } from "lezer-parser-nix"
-import { parser as LezerParserNix } from "../lezer-parser-nix"
+import { parser as LezerParserNix } from "./lezer-parser-nix"
+
 import {
   styleTags as CodemirrorHighlightStyleTags,
   tags as CodemirrorHighlightTags,
 } from "@lezer/highlight"
+
 import {
   /*
   LRLanguage, LanguageSupport,
@@ -70,10 +73,13 @@ import {
   indentNodeProp,
   foldInside as CodemirrorLanguageFoldInside
 } from "@codemirror/language"
-import MonacoThemeTomorrow from "../monaco-lezer-parser/themes/tomorrow";
+
+import MonacoThemeTomorrow from "./monaco-lezer-parser/themes/tomorrow";
+
 MonacoLezerParser.Theme.load(MonacoThemeTomorrow);
+
 // FIXME
-//import MonacoThemeTomorrow from "../monaco-lezer-parser/themes/tomorrow";
+//import MonacoThemeTomorrow from "./monaco-lezer-parser/themes/tomorrow";
 
 /* this is working
 import TreeSitter from 'web-tree-sitter';
