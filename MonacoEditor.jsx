@@ -52,6 +52,9 @@ import MonacoThemeTomorrow from "./monaco-tree-sitter/themes/tomorrow";
 MonacoTreeSitter.Theme.load(MonacoThemeTomorrow);
 */
 
+// TODO support lezer-parser and tree-sitter
+// lezer-parser is preferred because it is pure javascript
+// tree-sitter requires WASM so its less portable, but faster
 
 // TODO factor out to props.parser?
 import * as MonacoLezerParser from "./monaco-lezer-parser";
@@ -217,6 +220,10 @@ export default function MonacoEditor(props) {
     //TreeSitterNix = await TreeSitter.Language.load('./tree-sitter-nix.wasm'); // served from vite-plugin-tree-sitter
     */
 
+    // TODO?
+    //const parsers = Array.isArray(props.parser) ? props.parser : [props.parser];
+    //for (const parser of parsers) {
+    //}
 
     const lezerParserNixOptions = {
       props: [
@@ -244,8 +251,12 @@ export default function MonacoEditor(props) {
 
     // monaco-lezer-parser/src/language.js
     // Load the language's grammar rules
+    // TODO switch parser type: lezer-parser vs tree-sitter
+    console.log('MonacoEditor: parser type', typeof(MonacoLezerParser))
     const language = new MonacoLezerParser.Language(MonacoLezerParserGrammarNix);
-    language.init(LezerParserNix, lezerParserNixOptions);
+    // the init method allows to run async code, for example to load WASM
+    // TODO expose init args to props.parser.language[i].initArgs
+    await language.init(LezerParserNix, lezerParserNixOptions);
 
     /* debug
     const TreeSitterNix = await TreeSitter.Language.load(TreeSitterNixWasm); // served from vite-plugin-tree-sitter
