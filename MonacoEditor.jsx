@@ -167,7 +167,7 @@ export default function MonacoEditor(props) {
   // FIXME set MonacoEnvironment.getWorkerUrl or MonacoEnvironment.getWorker
 
   const setupEditor = () => {
-    console.log('finalProps.options', finalProps.options)
+    console.log('MonacoEditor: finalProps.options', finalProps.options)
     //editor = Monaco.editor.create(parent, finalProps);
     editor = Monaco.editor.create(parent, {
       //model: null,
@@ -260,28 +260,28 @@ export default function MonacoEditor(props) {
     //console.dir(TreeSitterNix.parse('true'))
     */
 
-    console.log('Initialize Monaco')
+    console.log('MonacoEditor: Initialize Monaco')
 
     if (model() === null) {
-      console.log('Initialize Monaco: model == null')
+      console.log('MonacoEditor: Initialize Monaco: model == null')
       const modelListener = Monaco.editor.onDidCreateModel((model) => {
         console.log(`model.uri.toString() = ${model.uri.toString()}`)
         if (model.uri.toString() === finalProps.url) {
-          console.log('Initialize Monaco 2')
+          console.log('MonacoEditor: Initialize Monaco 2')
           setupEditor();
           updateModel();
           modelListener.dispose();
         }
         else {
-          console.log('Initialize Monaco 2 not')
+          console.log('MonacoEditor: Initialize Monaco 2 not')
         }
       });
     } else {
-      console.log('Initialize Monaco: model != null')
+      console.log('MonacoEditor: Initialize Monaco: model != null')
       setupEditor();
     }
 
-    console.log('Add LezerParser to Monaco')
+    console.log('MonacoEditor: Add LezerParser to Monaco')
 
     //editor.deltaDecorations(); // FIXME
 
@@ -301,7 +301,7 @@ export default function MonacoEditor(props) {
       onUpdateTree: newTree => {
         //console.log('onUpdateTree: newTree', newTree)
         //console.log('onUpdateTree: newTree.rootNode', newTree.rootNode) // tree-sitter
-        console.log('onUpdateTree: newTree.topNode', newTree.topNode) // lezer-parser
+        console.log('MonacoEditor: onUpdateTree: newTree.topNode', newTree.topNode) // lezer-parser
         setState('tree', newTree);
         if (props.setTree) props.setTree(newTree); // callback to parent components
       },
