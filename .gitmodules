@@ -1,3 +1,6 @@
 [submodule "monaco-lezer-parser"]
 	path = monaco-lezer-parser
 	url = https://github.com/milahu/monaco-lezer-parser
+[submodule "lezer-parser-nix"]
+	path = lezer-parser-nix
+	url = https://github.com/milahu/lezer-parser-nix
