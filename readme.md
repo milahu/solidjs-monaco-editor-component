@@ -4,7 +4,7 @@ use [monaco-editor](https://github.com/microsoft/monaco-editor) in [solidjs](htt
 
 ## live demo
 
-https://milahu.github.io/solidjs-monaco-editor-component
+https://milahu.github.io/solidjs-monaco-editor-component/
 
 ## status
 
