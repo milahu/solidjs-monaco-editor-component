@@ -90,9 +90,16 @@ import TreeSitter from 'web-tree-sitter';
 const TreeSitterNixWasm = '/tree-sitter-nix.wasm';
 */
 
+/** @typedef {import("monaco-editor")} Monaco */
+
+/**
+ * @param {object} props
+ * @param {Monaco.editor.IStandaloneEditorConstructionOptions} props.options
+ */
+
 export default function MonacoEditor(props) {
 
-  const finalProps = mergeProps({ showActionBar: true }, props);
+  const finalProps = mergeProps({ options: {}, showActionBar: true }, props);
 
   let parent;
   let editor;
@@ -110,7 +117,7 @@ export default function MonacoEditor(props) {
       // fix: ModelService: Cannot add model because it already exists
       // https://github.com/atularen/ngx-monaco-editor/issues/48
       // the model URI is used to identify editor instances
-      Monaco.editor.createModel(props.options.value, "nix", Monaco.Uri.parse("file:///unique-editor-id.nix"))
+      Monaco.editor.createModel(finalProps.options.value, "nix", Monaco.Uri.parse("file:///unique-editor-id.nix"))
     }
   };
 
@@ -184,7 +191,7 @@ export default function MonacoEditor(props) {
       lineDecorationsWidth: 5,
       lineNumbersMinChars: 3,
       padding: { top: 15 },
-      //minimap: { enabled: finalProps.withMinimap, },
+      //minimap: { enabled: finalProps.minimap, },
 
       ...finalProps.options,
     });
@@ -365,12 +372,13 @@ export default function MonacoEditor(props) {
 
 
 
-    <div>
+    <div style="height:100%">
       <div
         class={`grid grid-cols-1 ${finalProps.class || ''}`}
         classList={{ ...(finalProps.classList || {}), relative: props.canCopy }}
+        style="height:100%"
       >
-        <div class="p-0 dark:text-white" style="height: 100vh" ref={parent}></div>
+        <div class="p-0 dark:text-white" style="height:100%" ref={parent}></div>
 
         <div class="flex justify-end space-x-2 p-2" classList={{ hidden: !showActionBar() }}>
           <Show when={finalProps.canFormat}>
