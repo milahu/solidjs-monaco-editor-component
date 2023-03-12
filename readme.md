@@ -24,7 +24,7 @@ see [demo/src/App.jsx](demo/src/App.jsx)
 
 ## install
 
-```
+```sh
 # use pnpm or yarn or npm
 NPM=pnpm
 if ! command -v $NPM >/dev/null 2>&1; then NPM=yarn; fi
