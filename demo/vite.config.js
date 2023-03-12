@@ -1,7 +1,14 @@
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
 
-// TODO https://stackoverflow.com/questions/73483816/minimal-monaco-editor-without-language-support
+// TODO produce an empty ".nojekyll" file in docs/
+// to make github deploy faster
+
+// TODO move docs/ to branch gh-pages to keep repo small
+// monaco-editor has 4 MByte!
+
+// TODO move monaco-editor to a separate chunk to avoid rebuilds
+// see also https://stackoverflow.com/questions/73483816/minimal-monaco-editor-without-language-support
 
 // https://github.com/vdesjs/vite-plugin-monaco-editor
 //import monacoEditorPlugin from 'vite-plugin-monaco-editor';
